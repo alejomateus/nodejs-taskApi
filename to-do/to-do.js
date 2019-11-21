@@ -25,11 +25,36 @@ const create = (description) => {
     saveDB();
     return toDo;
 }
-const getList = ()=>{
+const update = (description, complete = true) => {
+    loadDB();
+    let index = listToDo.findIndex(task => task.description === description);
+    if (index >= 0) {
+        listToDo[index].complete = complete;
+        saveDB();
+        return true;
+    } else {
+        return false;
+    }
+}
+const deleteTask = (description) => {
+    loadDB();
+    let newListToDo = listToDo.filter(task => task.description !== description);
+    if (newListToDo.length === listToDo.length) {
+        listToDo[index].complete = complete;
+        return false;
+    } else {
+        listToDo = newListToDo
+        saveDB();
+        return true;
+    }
+}
+const getList = () => {
     loadDB();
     return listToDo;
 }
 module.exports = {
-    create, 
-    getList
+    create,
+    getList,
+    update,
+    deleteTask
 }

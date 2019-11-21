@@ -14,13 +14,18 @@ switch (command) {
         list.forEach(task => {
             console.log('=======To Do======'.green);
             console.log(task.description);
-            console.log('State',task.complete);
-            console.log('=================='.green);            
+            console.log('State', task.complete);
+            console.log('=================='.green);
         });
         console.log('list');
         break;
     case 'update':
-        console.log('update');
+        let updated = toDo.update(argv.description, argv.complete);
+        console.log('update', updated);
+        break;
+    case 'delete':
+        let deleted = toDo.deleteTask(argv.description);
+        console.log('deleted', deleted);
         break;
     default:
         console.log('command is´nt reconigzed');
