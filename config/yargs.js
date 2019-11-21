@@ -9,7 +9,9 @@ const complete = {
     desc: 'Mark the task completed or pending'
 };
 const argv = require('yargs').
-    command('list', '').
+    command('list', '', {
+        complete
+    }).
     command('create', '', {
         description
     }).

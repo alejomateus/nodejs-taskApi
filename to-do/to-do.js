@@ -48,9 +48,14 @@ const deleteTask = (description) => {
         return true;
     }
 }
-const getList = () => {
+const getList = (complete) => {
     loadDB();
-    return listToDo;
+    let list = [];
+    complete = complete === 'false' ? false : complete === 'true' ? true : true;
+    list = listToDo.filter(task => task.complete === complete);
+    if (complete === undefined)
+        list = listToDo;
+    return list;
 }
 module.exports = {
     create,
